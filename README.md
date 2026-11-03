@@ -120,3 +120,9 @@
 - 메인 장르 칩(정차 중만, 다음 곡부터, 주행 중 잠김)
 - 연타 반복 대응: Spotify 반복 끄기(PlayerApi.setRepeat), 큐 밖 곡 교정, 넘김 직렬화, 자체 음원 5곡 셔플 + 'Spotify 미연결 — 자체 음원 5곡' 표시·다시 연결
 - 단위 테스트 74개(웹 engine·v5·skip 이식, 공용 파일 비교 포함)
+
+## 앱 화면
+| | |
+|---|---|
+| <img src="screenshots/01_pleos_emulator.png" width="420"><br>1. Pleos 에뮬레이터 — 메인 화면·장르 칩·재생 | <img src="screenshots/02_highway_autoplay.png" width="240"><br>2. 실주행(경부고속도로) — 고속도로 장면·자동 선곡 (모바일 웹) |
+| <img src="screenshots/03_bridge_map_genre.png" width="420"><br>3. 양화대교 시연 주행 — 다리 위 장면·지도 | <img src="screenshots/04_scene_playlist.png" width="240"><br>4. 재생목록 — 장면별 다음 곡 묶음 (모바일 웹) |
