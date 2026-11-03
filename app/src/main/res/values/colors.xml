@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GILTUNE color tokens. Flat colors only. SANORA WEB -->
+<resources>
+    <color name="bg">#0A0F18</color>
+    <color name="map_bg">#111925</color>
+    <color name="map_water">#14263A</color>
+    <color name="map_road">#243247</color>
+    <color name="map_grid">#1C2636</color>
+    <color name="divider">#1C2533</color>
+    <color name="surface_btn">#161E2B</color>
+    <color name="progress_track">#263042</color>
+    <color name="text_primary">#F2F4F7</color>
+    <color name="text_secondary">#8A96A8</color>
+    <color name="text_tertiary">#5E6A7C</color>
+    <!-- accent: ONLY play button, progress bar, real GPS route, scene-chip stripe -->
+    <color name="accent">#5CE8C2</color>
+    <color name="demo">#73ACFF</color>
+    <color name="warn">#F5B841</color>
+    <!-- album art (self-made flat shapes) -->
+    <color name="art_blue">#1E3A5F</color>
+    <color name="art_night">#1A1630</color>
+    <color name="art_tunnel">#2A2F3A</color>
+    <color name="art_amber">#F5B841</color>
+</resources>

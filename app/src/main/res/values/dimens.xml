@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Touch targets. Pleos design guide defines Large/Medium/Small button classes
+  (https://document.pleos.ai/docs/connect/guide/docs-design/components/actions/basic-button)
+  but publishes no dp number: 76dp / 96dp are GILTUNE's own values for the "Large" class.
+-->
+<resources>
+    <dimen name="touch_large">76dp</dimen>
+    <dimen name="touch_play">96dp</dimen>
+    <dimen name="status_bar">56dp</dimen>
+    <dimen name="pad_pane">32dp</dimen>
+    <dimen name="radius_btn">12dp</dimen>
+</resources>

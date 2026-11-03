@@ -1,0 +1,1128 @@
+{
+ "version": 5,
+ "updated": "2026-10-29",
+ "note": "GILTUNE 공용 장면 규칙. 웹(A)과 안드로이드(B)가 같은 파일을 사용. 스키마: scene_rules.schema_ko.md",
+ "road": {
+  "highwayMap": {
+   "motorway": "MOTORWAY",
+   "motorway_link": "MOTORWAY",
+   "trunk": "URBAN_EXPRESSWAY",
+   "trunk_link": "URBAN_EXPRESSWAY",
+   "primary": "DOWNTOWN",
+   "primary_link": "DOWNTOWN",
+   "secondary": "DOWNTOWN",
+   "secondary_link": "DOWNTOWN",
+   "tertiary": "DOWNTOWN",
+   "tertiary_link": "DOWNTOWN",
+   "residential": "ALLEY",
+   "living_street": "ALLEY",
+   "service": "ALLEY",
+   "unclassified": "ALLEY",
+   "track": "ALLEY"
+  },
+  "importance": [
+   "MOTORWAY",
+   "URBAN_EXPRESSWAY",
+   "DOWNTOWN",
+   "ALLEY"
+  ],
+  "slowSpeedMps": 8,
+  "labels": {
+   "MOTORWAY": "고속도로",
+   "URBAN_EXPRESSWAY": "도시고속도로",
+   "DOWNTOWN": "도심 도로",
+   "ALLEY": "골목길",
+   "BRIDGE": "다리",
+   "TUNNEL": "터널",
+   "UNKNOWN": "도로 확인 중"
+  },
+  "speedBands": {
+   "note": "OSM·주소 조회가 모두 실패했거나 결과가 staleMs보다 오래되면 속도로 도로 성격을 추정(우리 자체 규칙)",
+   "staleMs": 45000,
+   "bands": [
+    {
+     "maxMps": 8.3,
+     "roadType": "ALLEY"
+    },
+    {
+     "maxMps": 19.4,
+     "roadType": "DOWNTOWN"
+    },
+    {
+     "maxMps": 999,
+     "roadType": "URBAN_EXPRESSWAY"
+    }
+   ],
+   "minSpeedForBandMps": 0.5,
+   "fastSustain": {
+    "mps": 16.7,
+    "sec": 30,
+    "roadType": "URBAN_EXPRESSWAY",
+    "note": "60km/h 이상이 30초 이상 지속되면 고속(도시고속도로) 후보"
+   }
+  },
+  "sourceLabels": {
+   "overpass": "OSM",
+   "nominatim": "Nominatim 도로",
+   "address": "주소 추정",
+   "speed": "속도",
+   "demo": "데모",
+   "none": "없음"
+  }
+ },
+ "proximity": {
+  "roadRadiusM": 35,
+  "riverRadiusM": 200,
+  "coastRadiusM": 400
+ },
+ "osm": {
+  "minMoveM": 100,
+  "minIntervalMs": 8000,
+  "maxAgeMs": 180000,
+  "cacheGridDeg": 0.0015,
+  "cacheMax": 400,
+  "backoffMs": 60000,
+  "endpoints": [
+   "https://overpass-api.de/api/interpreter",
+   "https://overpass.kumi.systems/api/interpreter",
+   "https://overpass.private.coffee/api/interpreter",
+   "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
+  ],
+  "timeoutMs": 5000,
+  "nominatim": {
+   "endpoint": "https://nominatim.openstreetmap.org/reverse",
+   "zoom": 17,
+   "minIntervalMs": 1100,
+   "note": "Overpass 미러 전부 실패 시에만 사용. 공식 정책: 초당 1회 이하, 결과 캐시, 대량 사용 금지"
+  }
+ },
+ "weather": {
+  "endpoint": "https://api.open-meteo.com/v1/forecast",
+  "minMoveM": 5000,
+  "minIntervalMs": 600000,
+  "rainCodes": [
+   51,
+   53,
+   55,
+   56,
+   57,
+   61,
+   63,
+   65,
+   66,
+   67,
+   71,
+   73,
+   75,
+   77,
+   80,
+   81,
+   82,
+   85,
+   86,
+   95,
+   96,
+   99
+  ],
+  "daily": "sunrise,sunset"
+ },
+ "time": {
+  "nightStartHour": 20,
+  "nightEndHour": 6,
+  "note": "시간대는 장면 결정에 쓰지 않고 분위기 가중치(taste.timeMoods)로만 사용"
+ },
+ "speed": {
+  "highwayFallbackMps": 22,
+  "drivingMps": 2.5,
+  "maxAccuracyM": 50,
+  "maxPlausibleMps": 70,
+  "holdMs": 10000
+ },
+ "stabilizer": {
+  "minHoldMs": 40000,
+  "confirmCount": 2,
+  "confirmMs": 25000,
+  "urgentConfirmMs": 3000,
+  "urgentScenes": [
+   "TUNNEL",
+   "BRIDGE"
+  ]
+ },
+ "genres": {
+  "kpop": "k-pop",
+  "pop": "pop",
+  "ballad": "korean ballad",
+  "hiphop": "hip-hop",
+  "rnb": "r-n-b",
+  "rock": "rock",
+  "indie": "indie",
+  "jazz": "jazz",
+  "trot": "trot",
+  "edm": "edm",
+  "citypop": "city pop",
+  "lofi": "chill",
+  "classical": "classical"
+ },
+ "scenes": [
+  {
+   "id": "TUNNEL",
+   "label": "터널",
+   "caption": "터널 구간 · 울림이 있는 음악",
+   "when": {
+    "roadTypes": [
+     "TUNNEL"
+    ]
+   },
+   "local": "tunnel.mp3",
+   "keywords": [
+    "dark ambient",
+    "echo synth",
+    "deep night"
+   ]
+  },
+  {
+   "id": "BRIDGE",
+   "label": "다리 위",
+   "caption": "다리 진입 · 탁 트인 음악",
+   "when": {
+    "roadTypes": [
+     "BRIDGE"
+    ]
+   },
+   "local": "coastal.mp3",
+   "keywords": [
+    "city lights",
+    "bridge night",
+    "skyline"
+   ]
+  },
+  {
+   "id": "RAIN",
+   "label": "비 오는 길",
+   "caption": "빗길과 어울리는 음악",
+   "when": {
+    "rain": true
+   },
+   "local": "alley.mp3",
+   "keywords": [
+    "rainy day",
+    "rain",
+    "cozy rain"
+   ]
+  },
+  {
+   "id": "COASTAL",
+   "label": "바닷길",
+   "caption": "해안선 근처 · 시원한 음악",
+   "when": {
+    "coastal": true
+   },
+   "local": "coastal.mp3",
+   "keywords": [
+    "ocean",
+    "summer breeze",
+    "beach drive"
+   ]
+  },
+  {
+   "id": "RIVERSIDE",
+   "label": "강변",
+   "caption": "강을 따라 · 여유로운 음악",
+   "when": {
+    "river": true,
+    "roadTypes": [
+     "MOTORWAY",
+     "URBAN_EXPRESSWAY",
+     "DOWNTOWN"
+    ]
+   },
+   "local": "coastal.mp3",
+   "keywords": [
+    "river",
+    "sunset drive",
+    "golden hour"
+   ]
+  },
+  {
+   "id": "HIGHWAY",
+   "label": "고속도로",
+   "caption": "빠른 주행 · 리듬감 있는 음악",
+   "when": {
+    "roadTypes": [
+     "MOTORWAY"
+    ]
+   },
+   "local": "highway.mp3",
+   "keywords": [
+    "highway",
+    "driving",
+    "road trip",
+    "fast lane"
+   ]
+  },
+  {
+   "id": "HIGHWAY",
+   "label": "고속도로",
+   "caption": "빠른 속도 감지 · 리듬감 있는 음악",
+   "when": {
+    "roadTypes": [
+     "UNKNOWN"
+    ],
+    "minSpeedMps": 22
+   },
+   "local": "highway.mp3",
+   "keywords": [
+    "highway",
+    "driving",
+    "road trip",
+    "fast lane"
+   ]
+  },
+  {
+   "id": "CITY_EXPRESS",
+   "label": "도시고속도로",
+   "caption": "도시를 가로지르는 음악",
+   "when": {
+    "roadTypes": [
+     "URBAN_EXPRESSWAY"
+    ]
+   },
+   "local": "city_express.mp3",
+   "keywords": [
+    "city drive",
+    "urban groove",
+    "night city"
+   ]
+  },
+  {
+   "id": "ALLEY",
+   "label": "골목길",
+   "caption": "천천히 · 차분한 음악",
+   "when": {
+    "roadTypes": [
+     "ALLEY"
+    ]
+   },
+   "local": "alley.mp3",
+   "keywords": [
+    "acoustic",
+    "walk",
+    "slow"
+   ]
+  },
+  {
+   "id": "DOWNTOWN",
+   "label": "도심",
+   "caption": "도심 주행 · 경쾌한 음악",
+   "when": {
+    "roadTypes": [
+     "DOWNTOWN"
+    ]
+   },
+   "local": "city_express.mp3",
+   "keywords": [
+    "upbeat",
+    "city",
+    "weekend"
+   ]
+  },
+  {
+   "id": "CRUISE",
+   "label": "드라이브",
+   "caption": "현재 위치와 시간에 맞춘 음악",
+   "when": {},
+   "local": "highway.mp3",
+   "keywords": [
+    "drive",
+    "feel good",
+    "cruising"
+   ]
+  }
+ ],
+ "localTracksNote": "폴백 MP3는 tools/music/generate_tracks.py로 직접 합성한 5곡만 사용(TRACKS_SHA256.txt). 출처 미확인 4곡(bridge/clear/rain/autumn)은 미사용.",
+ "genreLabels": {
+  "kpop": "K-POP",
+  "pop": "팝송",
+  "ballad": "발라드",
+  "hiphop": "힙합",
+  "rnb": "R&B",
+  "rock": "록",
+  "indie": "인디",
+  "jazz": "재즈",
+  "trot": "트로트",
+  "edm": "EDM",
+  "citypop": "시티팝",
+  "lofi": "칠·로파이",
+  "classical": "클래식"
+ },
+  "genreText": {"kpop": "K-pop", "pop": "pop", "ballad": "발라드", "hiphop": "hip hop", "rnb": "R&B", "rock": "rock", "indie": "indie", "jazz": "jazz", "trot": "트로트", "edm": "EDM", "citypop": "city pop", "lofi": "lofi", "classical": "classical"},
+  "genrePool": {"playlistsPerGenre": 3, "playlistTracks": 50, "artistsPerBuild": 4, "refreshMin": 30, "years": ["2010-2014", "2015-2019", "2020-2026"], "minPool": 10, "maxArtistLookups": 8},
+  "titleWords": {"TUNNEL": ["터널", "어둠", "빛", "tunnel", "dark", "light"], "BRIDGE": ["다리", "대교", "bridge"], "RAIN": ["비", "빗소리", "우산", "장마", "rain", "rainy", "umbrella"], "COASTAL": ["바다", "파도", "해변", "바닷가", "sea", "ocean", "wave", "waves", "beach"], "RIVERSIDE": ["강", "한강", "강변", "물결", "river"], "HIGHWAY": ["고속도로", "질주", "드라이브", "highway", "drive", "driving", "speed"], "CITY_EXPRESS": ["도시", "서울", "불빛", "city", "seoul", "lights"], "ALLEY": ["골목", "동네", "산책", "alley", "street", "walk"], "DOWNTOWN": ["도시", "거리", "시내", "서울", "city", "downtown", "street"], "CRUISE": ["드라이브", "여행", "바람", "drive", "cruise", "road", "trip", "wind"], "night": ["밤", "새벽", "한밤", "night", "midnight", "moon"], "morning": ["아침", "햇살", "morning", "sunrise", "sunshine"]},
+  "genreSources": {
+    "kpop": {
+      "playlist": [
+        "K-pop 히트",
+        "케이팝",
+        "K-pop hits"
+      ],
+      "text": "케이팝",
+      "keywords": [
+        "k-pop",
+        "kpop",
+        "케이팝",
+        "아이돌",
+        "k pop"
+      ],
+      "artists": [
+        "BTS",
+        "BLACKPINK",
+        "NewJeans",
+        "IVE",
+        "aespa",
+        "SEVENTEEN",
+        "TWICE",
+        "LE SSERAFIM",
+        "Stray Kids",
+        "(G)I-DLE"
+      ]
+    },
+    "pop": {
+      "playlist": [
+        "팝송",
+        "pop hits",
+        "팝송 명곡"
+      ],
+      "text": "팝송",
+      "keywords": [
+        "팝송",
+        "pop hits",
+        "pop songs",
+        "billboard",
+        "top 40"
+      ],
+      "artists": [
+        "Taylor Swift",
+        "Ed Sheeran",
+        "Dua Lipa",
+        "Bruno Mars",
+        "Ariana Grande",
+        "The Weeknd",
+        "Harry Styles",
+        "Charlie Puth",
+        "Olivia Rodrigo",
+        "Justin Bieber"
+      ]
+    },
+    "ballad": {
+      "playlist": [
+        "발라드",
+        "발라드 명곡",
+        "korean ballad"
+      ],
+      "text": "발라드",
+      "keywords": [
+        "ballad",
+        "발라드",
+        "k-ballad"
+      ],
+      "artists": [
+        "성시경",
+        "이문세",
+        "김범수",
+        "박효신",
+        "폴킴",
+        "백지영",
+        "거미",
+        "정승환",
+        "김나영",
+        "이수"
+      ]
+    },
+    "hiphop": {
+      "playlist": [
+        "힙합",
+        "hip hop hits",
+        "국힙"
+      ],
+      "text": "힙합",
+      "keywords": [
+        "hip hop",
+        "hip-hop",
+        "힙합",
+        "rap",
+        "랩",
+        "국힙"
+      ],
+      "artists": [
+        "Kendrick Lamar",
+        "Drake",
+        "Travis Scott",
+        "J. Cole",
+        "ZICO",
+        "Beenzino",
+        "CHANGMO",
+        "pH-1",
+        "Jay Park",
+        "Epik High"
+      ]
+    },
+    "rnb": {
+      "playlist": [
+        "알앤비",
+        "R&B",
+        "korean r&b"
+      ],
+      "text": "알앤비",
+      "keywords": [
+        "r&b",
+        "rnb",
+        "알앤비",
+        "soul"
+      ],
+      "artists": [
+        "Crush",
+        "DEAN",
+        "Heize",
+        "Zion.T",
+        "Colde",
+        "SZA",
+        "Frank Ocean",
+        "Daniel Caesar",
+        "H.E.R.",
+        "Giveon"
+      ]
+    },
+    "rock": {
+      "playlist": [
+        "록",
+        "rock classics",
+        "밴드 음악"
+      ],
+      "text": "록",
+      "keywords": [
+        "rock",
+        "록",
+        "락",
+        "밴드",
+        "band"
+      ],
+      "artists": [
+        "Queen",
+        "Foo Fighters",
+        "Green Day",
+        "Arctic Monkeys",
+        "Nirvana",
+        "Oasis",
+        "YB",
+        "NELL",
+        "DAY6",
+        "Guckkasten"
+      ]
+    },
+    "indie": {
+      "playlist": [
+        "인디",
+        "인디 음악",
+        "korean indie"
+      ],
+      "text": "인디",
+      "keywords": [
+        "indie",
+        "인디"
+      ],
+      "artists": [
+        "JANNABI",
+        "The Black Skirts",
+        "HYUKOH",
+        "10CM",
+        "SE SO NEON",
+        "BOL4",
+        "Phoebe Bridgers",
+        "Tame Impala",
+        "Vampire Weekend",
+        "Car Seat Headrest"
+      ]
+    },
+    "jazz": {
+      "playlist": [
+        "재즈",
+        "jazz classics",
+        "드라이브 재즈"
+      ],
+      "text": "재즈",
+      "keywords": [
+        "jazz",
+        "재즈",
+        "swing",
+        "bossa"
+      ],
+      "artists": [
+        "Miles Davis",
+        "John Coltrane",
+        "Bill Evans",
+        "Chet Baker",
+        "Norah Jones",
+        "Ella Fitzgerald",
+        "Youn Sun Nah",
+        "Diana Krall",
+        "Herbie Hancock",
+        "Thelonious Monk"
+      ]
+    },
+    "trot": {
+      "playlist": [
+        "트로트",
+        "트로트 메들리",
+        "trot"
+      ],
+      "text": "트로트",
+      "keywords": [
+        "trot",
+        "트로트",
+        "뽕짝"
+      ],
+      "artists": [
+        "임영웅",
+        "송가인",
+        "장윤정",
+        "홍진영",
+        "영탁",
+        "이찬원",
+        "나훈아",
+        "태진아",
+        "주현미",
+        "박현빈"
+      ]
+    },
+    "edm": {
+      "playlist": [
+        "EDM",
+        "edm hits",
+        "일렉트로닉"
+      ],
+      "text": "EDM",
+      "keywords": [
+        "edm",
+        "electronic",
+        "일렉트로닉",
+        "house",
+        "dance"
+      ],
+      "artists": [
+        "Avicii",
+        "Martin Garrix",
+        "Calvin Harris",
+        "David Guetta",
+        "Zedd",
+        "Marshmello",
+        "Alan Walker",
+        "Kygo",
+        "The Chainsmokers",
+        "Tiësto"
+      ]
+    },
+    "citypop": {
+      "playlist": [
+        "시티팝",
+        "city pop",
+        "シティポップ"
+      ],
+      "text": "시티팝",
+      "keywords": [
+        "city pop",
+        "citypop",
+        "시티팝",
+        "シティポップ"
+      ],
+      "artists": [
+        "Mariya Takeuchi",
+        "Tatsuro Yamashita",
+        "Anri",
+        "Miki Matsubara",
+        "Taeko Ohnuki",
+        "Kim Hyun Chul",
+        "Night Tempo",
+        "YUKIKA",
+        "Junko Yagami",
+        "Toshiki Kadomatsu"
+      ]
+    },
+    "lofi": {
+      "playlist": [
+        "로파이",
+        "lofi",
+        "lofi chill"
+      ],
+      "text": "lofi",
+      "keywords": [
+        "lofi",
+        "lo-fi",
+        "로파이",
+        "chill",
+        "칠"
+      ],
+      "artists": [
+        "Nujabes",
+        "Jinsang",
+        "potsu",
+        "Kupla",
+        "Idealism",
+        "Philanthrope",
+        "j'san",
+        "Tomppabeats",
+        "eevee",
+        "Psalm Trees"
+      ]
+    },
+    "classical": {
+      "playlist": [
+        "클래식",
+        "classical essentials",
+        "클래식 명곡"
+      ],
+      "text": "클래식",
+      "keywords": [
+        "classical",
+        "클래식",
+        "symphony",
+        "sonata",
+        "concerto",
+        "교향곡",
+        "소나타",
+        "협주곡"
+      ],
+      "artists": [
+        "Ludwig van Beethoven",
+        "Wolfgang Amadeus Mozart",
+        "Johann Sebastian Bach",
+        "Frédéric Chopin",
+        "Claude Debussy",
+        "Pyotr Ilyich Tchaikovsky",
+        "Seong-Jin Cho",
+        "Antonio Vivaldi",
+        "Erik Satie",
+        "Franz Schubert"
+      ]
+    }
+  },
+ "taste": {
+  "moods": {
+   "chill": "chill",
+   "energetic": "energetic",
+   "emotional": "emotional",
+   "dreamy": "dreamy",
+   "groovy": "groove",
+   "calm": "acoustic",
+   "upbeat": "upbeat"
+  },
+  "moodLabels": {
+   "chill": "편안한",
+   "energetic": "신나는",
+   "emotional": "감성적인",
+   "dreamy": "몽환적인",
+   "groovy": "그루비한",
+   "calm": "잔잔한",
+   "upbeat": "업템포"
+  },
+  "plainWeight": 0.6,
+  "artistShare": 0.8,
+  "artistWeightWithGenre": 0.22,
+  "delta": {
+   "like": 0.5,
+   "complete": 0.1,
+   "skip": -0.3
+  },
+  "minW": 0.1,
+  "maxW": 3,
+  "skipSec": 30,
+  "completeRatio": 0.8,
+  "banAfterSkips": 2,
+  "batchSize": 6,
+  "plansPerBatch": 2,
+  "searchLimit": 10,
+  "timeMoods": {
+   "night": [
+    "chill",
+    "dreamy",
+    "emotional"
+   ],
+   "morning": [
+    "energetic",
+    "calm"
+   ],
+   "day": [
+    "groovy",
+    "energetic"
+   ],
+   "evening": [
+    "emotional",
+    "chill",
+    "groovy"
+   ]
+  },
+  "timeBands": {
+   "morning": [
+    6,
+    11
+   ],
+   "day": [
+    11,
+    17
+   ],
+   "evening": [
+    17,
+    20
+   ],
+   "night": [
+    20,
+    6
+   ]
+  },
+  "timeMoodBoost": 1.5,
+  "speedMoods": {
+   "fastMps": 22,
+   "fast": [
+    "energetic"
+   ],
+   "slowMps": 5,
+   "slow": [
+    "calm",
+    "chill"
+   ]
+  },
+  "offsetMax": 40,
+  "recentTracks": 40,
+  "recentArtists": 8,
+  "maxPerArtist": 1,
+  "context": {
+   "note": "선곡 요소(v5). 각 요소는 분위기 후보에 가중치만 더함(장면 결정에 쓰지 않음). 요소 하나가 독점하지 않도록 요소별 합계 factorWeight로 제한",
+   "factorWeight": 0.6,
+   "userMoodWeight": 1.0,
+   "maxReasons": 2,
+   "weather": {
+    "codes": {
+     "clear": [
+      0,
+      1
+     ],
+     "cloudy": [
+      2,
+      3
+     ],
+     "fog": [
+      45,
+      48
+     ],
+     "rain": [
+      51,
+      53,
+      55,
+      56,
+      57,
+      61,
+      63,
+      66,
+      80,
+      81
+     ],
+     "heavyRain": [
+      65,
+      67,
+      82,
+      95,
+      96,
+      99
+     ],
+     "snow": [
+      71,
+      73,
+      75,
+      77,
+      85,
+      86
+     ]
+    },
+    "labels": {
+     "clear": "맑음",
+     "cloudy": "흐림",
+     "fog": "안개",
+     "rain": "비",
+     "heavyRain": "폭우",
+     "snow": "눈"
+    },
+    "moods": {
+     "clear": [
+      "energetic",
+      "groovy"
+     ],
+     "cloudy": [
+      "chill",
+      "calm"
+     ],
+     "fog": [
+      "dreamy",
+      "calm"
+     ],
+     "rain": [
+      "emotional",
+      "calm"
+     ],
+     "heavyRain": [
+      "calm",
+      "emotional"
+     ],
+     "snow": [
+      "dreamy",
+      "emotional"
+     ]
+    },
+    "rainScene": [
+     "rain",
+     "heavyRain"
+    ]
+   },
+   "temp": {
+    "hotC": 28,
+    "coldC": 3,
+    "labels": {
+     "hot": "무더위",
+     "cold": "추위"
+    },
+    "moods": {
+     "hot": [
+      "energetic",
+      "upbeat"
+     ],
+     "cold": [
+      "calm",
+      "emotional"
+     ]
+    }
+   },
+   "season": {
+    "months": {
+     "spring": [
+      3,
+      4,
+      5
+     ],
+     "summer": [
+      6,
+      7,
+      8
+     ],
+     "autumn": [
+      9,
+      10,
+      11
+     ],
+     "winter": [
+      12,
+      1,
+      2
+     ]
+    },
+    "labels": {
+     "spring": "봄",
+     "summer": "여름",
+     "autumn": "가을",
+     "winter": "겨울"
+    },
+    "moods": {
+     "spring": [
+      "groovy",
+      "dreamy"
+     ],
+     "summer": [
+      "energetic",
+      "upbeat"
+     ],
+     "autumn": [
+      "emotional",
+      "calm"
+     ],
+     "winter": [
+      "calm",
+      "dreamy"
+     ]
+    },
+    "weight": 0.3
+   },
+   "twilight": {
+    "marginMin": 40,
+    "labels": {
+     "sunrise": "해 뜰 무렵",
+     "sunset": "노을"
+    },
+    "moods": {
+     "sunrise": [
+      "calm",
+      "dreamy"
+     ],
+     "sunset": [
+      "emotional",
+      "dreamy"
+     ]
+    }
+   },
+   "dayType": {
+    "labels": {
+     "weekend": "주말",
+     "holiday": "공휴일"
+    },
+    "moods": {
+     "weekend": [
+      "groovy",
+      "chill"
+     ],
+     "holiday": [
+      "groovy",
+      "energetic"
+     ]
+    }
+   },
+   "commute": {
+    "am": [
+     7.0,
+     9.5
+    ],
+    "pm": [
+     17.5,
+     20.0
+    ],
+    "labels": {
+     "am": "출근길",
+     "pm": "퇴근길"
+    },
+    "moods": {
+     "am": [
+      "energetic",
+      "upbeat"
+     ],
+     "pm": [
+      "chill",
+      "groovy"
+     ]
+    }
+   },
+   "lateNight": {
+    "hours": [
+     0,
+     5
+    ],
+    "label": "심야",
+    "moods": [
+     "calm",
+     "dreamy"
+    ]
+   },
+   "time": {
+    "note": "기존 시간대 분위기(timeMoods)도 한 요소로 취급",
+    "weight": 0.4
+   },
+   "speed": {
+    "note": "기존 speedMoods도 한 요소",
+    "weight": 0.4
+   },
+   "jam": {
+    "windowSec": 180,
+    "maxAvgMps": {
+     "MOTORWAY": 11,
+     "URBAN_EXPRESSWAY": 8,
+     "DOWNTOWN": 3.5
+    },
+    "stops": 3,
+    "stopMps": 1,
+    "stopSec": 5,
+    "label": "정체",
+    "moods": [
+     "chill",
+     "groovy"
+    ]
+   },
+   "longDrive": {
+    "minutes": 90,
+    "breakMin": 10,
+    "label": "졸음 방지",
+    "moods": [
+     "upbeat",
+     "energetic"
+    ],
+    "weight": 1.0
+   }
+  }
+ },
+ "localTitles": {
+  "highway.mp3": "달리는 직선",
+  "city_express.mp3": "도시의 불빛",
+  "alley.mp3": "느린 골목",
+  "tunnel.mp3": "터널의 메아리",
+  "coastal.mp3": "바다 쪽 바람"
+ },
+ "geo": {
+  "dataFile": "geo_kr.json",
+  "note": "내장 해안선·강(OSM 파생, ODbL). 해안·강 판단은 이 데이터로(Overpass 불필요). Overpass 결과가 있으면 OR로 합침",
+  "cellDeg": 0.02,
+  "bridgeNeedsWater": [
+   "MOTORWAY",
+   "URBAN_EXPRESSWAY"
+  ],
+  "bridgeWaterMarginM": 0,
+  "riverRadiusM": 400,
+  "coastRadiusM": 400,
+  "radiusNote": "강변북로·올림픽대로는 한강공원 때문에 수면 경계에서 100~350m 떨어져 있어 내장 데이터 기준 강변 반경은 400m",
+  "bridgeNamePattern": "(대교|교|Bridge)$",
+  "bridgeNote": "도시고속도로·고속도로의 bridge 태그는 (1) 강 수면 위이고 (2) 도로 이름이 다리 이름(…대교/…교)일 때만 '다리'. 강변북로처럼 강을 따라 물가 위로 지나는 고가(서호교 구간 등)는 원래 등급+강변으로 판단"
+ },
+ "holidays": {
+  "source": "관공서의 공휴일에 관한 규정(대통령령 제36290호, 2026-04-30 개정, 제헌절·노동절 포함) 기준 계산표 hyuil.gwirae.com/2026, /2027(음력은 한국천문연구원 변환 대조), 지방선거일은 중앙선관위 공고. 확인일 2026-10-29. 임시공휴일은 미포함",
+  "dates": [
+   "2026-01-01",
+   "2026-02-16",
+   "2026-02-17",
+   "2026-02-18",
+   "2026-03-01",
+   "2026-03-02",
+   "2026-05-01",
+   "2026-05-05",
+   "2026-05-24",
+   "2026-05-25",
+   "2026-06-03",
+   "2026-06-06",
+   "2026-07-17",
+   "2026-08-15",
+   "2026-08-17",
+   "2026-09-24",
+   "2026-09-25",
+   "2026-09-26",
+   "2026-10-03",
+   "2026-10-05",
+   "2026-10-09",
+   "2026-12-25",
+   "2027-01-01",
+   "2027-02-06",
+   "2027-02-07",
+   "2027-02-08",
+   "2027-02-09",
+   "2027-03-01",
+   "2027-05-01",
+   "2027-05-03",
+   "2027-05-05",
+   "2027-05-13",
+   "2027-06-06",
+   "2027-07-17",
+   "2027-07-19",
+   "2027-08-15",
+   "2027-08-16",
+   "2027-09-14",
+   "2027-09-15",
+   "2027-09-16",
+   "2027-10-03",
+   "2027-10-04",
+   "2027-10-09",
+   "2027-10-11",
+   "2027-12-25",
+   "2027-12-27"
+  ]
+ }
+}

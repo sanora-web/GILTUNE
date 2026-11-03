@@ -1,0 +1,15 @@
+.gradle/
+.idea/
+.kotlin/
+build/
+app/build/
+local.properties
+captures/
+.externalNativeBuild/
+*.iml
+*.jks
+*.keystore
+*.p8
+.DS_Store
+report_*.md
+!apk/SANORAWEB_GILTUNE_release.apk
